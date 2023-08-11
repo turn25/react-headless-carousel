@@ -1,0 +1,39 @@
+{
+  "name": "@turn25/react-headless-carousel",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "author": "Tuan Vu",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/turn25/react-headless-carousel"
+  },
+  "scripts": {
+    "dev": "tsup src/index.tsx --watch",
+    "build": "tsup src/index.tsx",
+    "lint": "eslint \"src/**/*.ts*\""
+  },
+  "peerDependencies": {
+    "react": ">=17"
+  },
+  "dependencies": {
+    "embla-carousel-react": "8.0.0-rc11"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.20",
+    "@types/react-dom": "^18.2.7",
+    "autoprefixer": "^10.4.14",
+    "eslint": "^7.32.0",
+    "eslint-plugin-react": "^7.33.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "postcss": "^8.4.27",
+    "react": "^18.2.0",
+    "tsup": "^7.2.0",
+    "typescript": "^4.9.5"
+  }
+}

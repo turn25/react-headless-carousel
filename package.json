@@ -3,14 +3,15 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
+    "dev:package": "turbo run dev --filter=@turn25/react-headless-carousel",
+    "dev:website": "turbo run dev --filter=website...",
+    "start:website": "turbo run start --filter=website",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "@turbo/gen": "^1.9.7",
-    "eslint": "^7.32.0",
-    "eslint-config-custom": "workspace:*",
-    "prettier": "^2.5.1",
+    "eslint": "latest",
+    "prettier": "latest",
     "turbo": "latest"
   },
   "packageManager": "pnpm@8.6.10",
