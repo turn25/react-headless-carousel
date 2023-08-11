@@ -1,4 +1,4 @@
-import {
+import type {
   EmblaOptionsType,
   UseEmblaCarouselType,
   EmblaCarouselType,
@@ -8,16 +8,24 @@ export type { EmblaOptionsType, EmblaCarouselType };
 
 export type EmblaCarouelRefType = UseEmblaCarouselType[0];
 
-export type CarouselOptionsType = Omit<EmblaOptionsType, 'breakpoints'> & {
-  slidesPerView?: number;
-  slidesGap?: string;
-  breakpoints?: EmblaOptionsType['breakpoints'] & {
-    [key: string]: {
+export type CreateOptionsType<T> = T & {
+  active: boolean;
+  breakpoints: Record<
+    string,
+    Omit<Partial<CreateOptionsType<T>>, 'breakpoints' | 'axis'>
+  >;
+};
+
+export type OptionsType = Partial<
+  CreateOptionsType<
+    Omit<EmblaOptionsType, 'breakpoints'> & {
       slidesPerView?: number;
       slidesGap?: string;
-    };
-  };
-};
+    }
+  >
+>;
+
+export type CarouselOptionsType = Partial<OptionsType>;
 
 export type NavigationItemType = {
   canScrollNext: boolean;

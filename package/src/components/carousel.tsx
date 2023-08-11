@@ -1,5 +1,3 @@
-import './style.css';
-
 import * as React from 'react';
 import { useCarousel } from '@/hooks';
 import { CarouselOptionsType } from '@/types';
@@ -20,12 +18,6 @@ const Root = React.forwardRef<HTMLDivElement, CarouselRoot>((props, ref) => {
     ...options,
   });
 
-  const style = `
-    [rhc-viewport] {
-      ${computedStyles}
-    }
-  `;
-
   return (
     <CarouselContext.Provider
       value={{
@@ -38,18 +30,56 @@ const Root = React.forwardRef<HTMLDivElement, CarouselRoot>((props, ref) => {
         ref={ref}
         rhc-root=''
         dir={options?.direction || undefined}
-        data-oriented={options?.axis === 'y' ? 'y' : 'x'}
+        data-vertial-scroll={options?.axis === 'y' ? '' : undefined}
         {...rest}
       >
         <style
           scoped
+          suppressHydrationWarning
           style={{
             display: 'none !important',
             margin: '0px !important',
             padding: '0px !important',
           }}
         >
-          {style}
+          {`
+            [rhc-viewport] {
+              ${computedStyles}
+              overflow: hidden;
+            }
+
+            [rhc-container] {
+              display: flex;
+              backface-visibility: hidden;
+              flex-direction: row;
+              touch-action: pan-y;
+              height: auto;
+              margin-left: calc(-1 * var(--rhc-slides-gap) / 2);
+              margin-right: calc(-1 * var(--rhc-slides-gap) / 2);
+            }
+
+            [rhc-slide] {
+              position: relative;
+              min-width: 0px;
+              max-width: 100%;
+              flex: 0 0 calc(100% / var(--rhc-slides-per-view));
+              padding-left: calc(var(--rhc-slides-gap) / 2);
+              padding-right: calc(var(--rhc-slides-gap) / 2);
+            }
+
+            [rhc-root][data-vertial-scroll] [rhc-container] {
+              touch-action: pan-x;
+              flex-direction: column;
+              margin: 0;
+              margin-top: calc(-1 * var(--rhc-slides-gap) / 2);
+              margin-bottom: calc(-1 * var(--rhc-slides-gap) / 2);
+            }
+            [rhc-root][data-vertial-scroll] [rhc-slide] {
+              padding: 0;
+              padding-top: calc(var(--rhc-slides-gap) / 2);
+              padding-bottom: calc(var(--rhc-slides-gap) / 2);
+            }
+          `}
         </style>
         {children}
       </div>

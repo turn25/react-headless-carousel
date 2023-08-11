@@ -1,6 +1,6 @@
 {
   "name": "@turn25/react-headless-carousel",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -13,10 +13,25 @@
     "type": "git",
     "url": "https://github.com/turn25/react-headless-carousel"
   },
+  "keywords": [
+    "slider",
+    "carousel",
+    "slideshow",
+    "gallery",
+    "lightweight",
+    "touch",
+    "javascript",
+    "typescript",
+    "react",
+    "headless-ui",
+    "unstyled",
+    "headless"
+  ],
   "scripts": {
     "dev": "tsup src/index.tsx --watch",
     "build": "tsup src/index.tsx",
-    "lint": "eslint \"src/**/*.ts*\""
+    "lint": "eslint \"src/**/*.ts*\"",
+    "publish": "npm publish --access public"
   },
   "peerDependencies": {
     "react": ">=17"
@@ -31,9 +46,9 @@
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.33.1",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "postcss": "^8.4.27",
     "react": "^18.2.0",
     "tsup": "^7.2.0",
     "typescript": "^4.9.5"
-  }
+  },
+  "sideEffects": false
 }

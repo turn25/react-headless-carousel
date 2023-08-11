@@ -44,17 +44,17 @@ export default function Page() {
           renderItem={({ index, props }) => (
             <span
               {...props}
-              className='shadow-medium inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border bg-neutral-100 text-xs transition-all hover:bg-neutral-200 aria-[current]:bg-neutral-300'
+              className='inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border bg-neutral-100 text-xs shadow-medium transition-all hover:bg-neutral-200 aria-[current]:bg-neutral-300'
             >
               {index}
             </span>
           )}
         />
 
-        <Carousel.PrevButton className='shadow-medium absolute left-1 top-1/2 h-10 w-10 -translate-y-1/2 rounded-full bg-neutral-100 transition-all hover:bg-neutral-200 disabled:invisible disabled:opacity-0 max-lg:hidden'>
+        <Carousel.PrevButton className='absolute left-1 top-1/2 h-10 w-10 -translate-y-1/2 rounded-full bg-neutral-100 shadow-medium transition-all hover:bg-neutral-200 disabled:invisible disabled:opacity-0 max-lg:hidden'>
           <ChevronRightIcon className='rotate-180' />
         </Carousel.PrevButton>
-        <Carousel.NextButton className='shadow-medium absolute right-1 top-1/2 h-10 w-10 -translate-y-1/2 rounded-full bg-neutral-100 transition-all hover:bg-neutral-200 disabled:invisible disabled:opacity-0 max-lg:hidden'>
+        <Carousel.NextButton className='absolute right-1 top-1/2 h-10 w-10 -translate-y-1/2 rounded-full bg-neutral-100 shadow-medium transition-all hover:bg-neutral-200 disabled:invisible disabled:opacity-0 max-lg:hidden'>
           <ChevronRightIcon />
         </Carousel.NextButton>
       </Carousel.Root>
