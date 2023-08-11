@@ -9,7 +9,11 @@ import {
 import { removeKeys } from '@/utils';
 import { SlideFocus } from '@/plugins';
 
-export type UseCarouselType = {
+export type UseCarouselType = CarouselOptionsType & {
+  shouldComputeStyleTag?: boolean;
+};
+
+export type UseCarouselTypeReturn = {
   carouselRef: EmblaCarouelRefType;
   carouselApi: EmblaCarouselType;
   navigation: NavigationItemType;
@@ -33,7 +37,8 @@ const createEmblaConfig = (config: CarouselOptionsType) => {
   ]);
 };
 
-const useCarousel = (options?: CarouselOptionsType): UseCarouselType => {
+const useCarousel = (props?: UseCarouselType): UseCarouselTypeReturn => {
+  const { shouldComputeStyleTag, ...options } = props;
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       axis: 'x',
@@ -46,6 +51,8 @@ const useCarousel = (options?: CarouselOptionsType): UseCarouselType => {
   );
 
   const computedStyles = React.useMemo(() => {
+    if (!shouldComputeStyleTag) return '';
+
     const cssVarTokens = {
       slidesPerView: '--rhc-slides-per-view',
       slidesGap: '--rhc-slides-gap',
@@ -70,7 +77,12 @@ const useCarousel = (options?: CarouselOptionsType): UseCarouselType => {
     const result = [defaultSlidesPerView].concat(breakpointsSlidesPerView);
 
     return result.join('; ');
-  }, [options.breakpoints, options.slidesPerView, options.slidesGap]);
+  }, [
+    options.breakpoints,
+    options.slidesPerView,
+    options.slidesGap,
+    shouldComputeStyleTag,
+  ]);
 
   const [canScrollPrev, setCanScrollPrev] = React.useState<boolean>(false);
   const [canScrollNext, setCanScrollNext] = React.useState<boolean>(false);

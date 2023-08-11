@@ -7,6 +7,7 @@ export default function Page() {
   return (
     <main className='container mx-auto py-16'>
       <Carousel.Root
+  
         options={{
           slidesPerView: 2,
           slidesGap: '12px',
